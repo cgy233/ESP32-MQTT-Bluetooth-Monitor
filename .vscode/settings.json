@@ -1,0 +1,28 @@
+{
+"C_Cpp.intelliSenseEngine": "default",
+"idf.portWin": "COM14",
+"files.associations": {
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript",
+    "*.c": "c",
+    "*.yaml": "home-assistant",
+    "esp_mqtt5_custom.h": "c",
+    "esp_hid_host_main.h": "c",
+    "esp_types.h": "c",
+    "common.h": "c",
+    "inttypes.h": "c",
+    "freertos.h": "c",
+    "queue.h": "c",
+    "random": "c",
+    "esp_mqtt_custom.h": "c",
+    "bitset": "c",
+    "algorithm": "c",
+    "format": "c",
+    "tp_read_custom.h": "c"
+},
+"idf.adapterTargetName": "esp32",
+"idf.openOcdConfigs": [
+    "board/esp32-wrover-kit-3.3v.cfg"
+]
+}
