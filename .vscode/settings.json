@@ -19,7 +19,10 @@
     "bitset": "c",
     "algorithm": "c",
     "format": "c",
-    "tp_read_custom.h": "c"
+    "tp_read_custom.h": "c",
+    "stdio.h": "c",
+    "gpio.h": "c",
+    "gpio_etm.h": "c"
 },
 "idf.adapterTargetName": "esp32",
 "idf.openOcdConfigs": [

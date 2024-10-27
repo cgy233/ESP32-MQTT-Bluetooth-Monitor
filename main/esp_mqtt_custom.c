@@ -29,9 +29,10 @@
 
 #include "esp_log.h"
 #include "mqtt_client.h"
+#include "door_sensor_driver.h"
 
 #define DEV_PUBLISH_TOPIC "esp32/monitor"
-#define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/door"
+#define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/frontdoor/state"
 
 static const char *TAG = "MQTT_CUSTOM";
 
@@ -63,6 +64,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     switch ((esp_mqtt_event_id_t)event_id) {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
+        led_on();
 #if 0
         msg_id = esp_mqtt_client_publish(client, "/topic/qos1", "data_3", 0, 1, 0);
         ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
@@ -164,12 +166,12 @@ void mqtt_send_door_status(int status)
     char payload[128];
     char dev_topic[128];
 
-    char *door_status_list[] = {"CLOSE", "OPEN", "EVENT"};
+    char *door_status_list[] = {"LOCK", "UNLOCK", "EVENT"};
 
     snprintf(dev_topic, sizeof(dev_topic), "%s", DEV_DOOR_STATUS_TOPIC);
-    snprintf(payload, sizeof(payload), "{\"status\": \"%s\"}", door_status_list[status]);
+    snprintf(payload, sizeof(payload), "{\"state\": \"%s\"}", door_status_list[status]);
     ESP_LOGI(TAG, "TOP: %s, MES: %s \r\n", dev_topic, payload);
-    esp_mqtt_client_publish(g_mqtt_client, dev_topic, payload, 0, 1, 0);
+    esp_mqtt_client_publish(g_mqtt_client, dev_topic, payload, 0, 1, 1);
 }
 
 

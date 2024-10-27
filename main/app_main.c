@@ -7,6 +7,7 @@
 #include "tp_read_custom.h"
 #include "ble_tracker.h"
 #include "esp_log.h"
+#include "door_sensor_driver.h"
 
 QueueHandle_t ble_device_queue;
 ble_scan_result_t ble_tracker_data;
@@ -78,26 +79,21 @@ void app_main(void)
     {
         ble_tracker_data.devices[0].mac[i] = 0;
     }
-    // ble_tracker_data.devices[0].mac[0] = 0xc7;
-    // ble_tracker_data.devices[0].mac[1] = 0x6a;
-    // ble_tracker_data.devices[0].mac[2] = 0xcd;
-    // ble_tracker_data.devices[0].mac[3] = 0x04;
-    // ble_tracker_data.devices[0].mac[4] = 0x1a;
-    // ble_tracker_data.devices[0].mac[5] = 0x80;
-    // 84:46:93:47:c2:d1
-    ble_tracker_data.devices[0].mac[0] = 0x84;
-    ble_tracker_data.devices[0].mac[1] = 0x46;
-    ble_tracker_data.devices[0].mac[2] = 0x93;
-    ble_tracker_data.devices[0].mac[3] = 0x47;
-    ble_tracker_data.devices[0].mac[4] = 0xc2;
-    ble_tracker_data.devices[0].mac[5] = 0xd1;
+
+    ble_tracker_data.devices[0].mac[0] = 0xc7;
+    ble_tracker_data.devices[0].mac[1] = 0x6a;
+    ble_tracker_data.devices[0].mac[2] = 0xcd;
+    ble_tracker_data.devices[0].mac[3] = 0x04;
+    ble_tracker_data.devices[0].mac[4] = 0x1a;
+    ble_tracker_data.devices[0].mac[5] = 0x80;
 
     ble_device_queue = xQueueCreate(10, sizeof(ble_scan_result_t));
 
+    door_sensor_init();
+
     mqtt_custom_init();
 
-    esp_ble_scan_init();
-
+    // esp_ble_scan_init();
     // xTaskCreate(&confidence_task, "confidence_task", 6 * 1024, NULL, 2, NULL);
-    tp_read_start();
+    // tp_read_start();
 }
