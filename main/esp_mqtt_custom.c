@@ -32,7 +32,8 @@
 #include "door_sensor_driver.h"
 
 #define DEV_PUBLISH_TOPIC "esp32/monitor"
-#define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/backdoor/state"
+#define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/frontdoor/state"
+#define DEV_RADAR_STATUS_TOPIC "esp32/ethanhome/radar_bedroom/state"
 
 static const char *TAG = "MQTT_CUSTOM";
 
@@ -170,6 +171,20 @@ void mqtt_send_door_status(int status)
 
     snprintf(dev_topic, sizeof(dev_topic), "%s", DEV_DOOR_STATUS_TOPIC);
     snprintf(payload, sizeof(payload), "{\"state\": \"%s\"}", door_status_list[status]);
+    ESP_LOGI(TAG, "TOP: %s, MES: %s \r\n", dev_topic, payload);
+    esp_mqtt_client_publish(g_mqtt_client, dev_topic, payload, 0, 1, 1);
+}
+
+void mqtt_send_radar_status(int status)
+{
+    char payload[128];
+    char dev_topic[128];
+
+    // 两个状态 检测到有人 和无人
+    char *radar_status_list[] = {"on", "off"};
+
+    snprintf(dev_topic, sizeof(dev_topic), "%s", DEV_RADAR_STATUS_TOPIC);
+    snprintf(payload, sizeof(payload), "{\"occupancy\": \"%s\"}", radar_status_list[status]);
     ESP_LOGI(TAG, "TOP: %s, MES: %s \r\n", dev_topic, payload);
     esp_mqtt_client_publish(g_mqtt_client, dev_topic, payload, 0, 1, 1);
 }

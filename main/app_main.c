@@ -8,6 +8,7 @@
 #include "ble_tracker.h"
 #include "esp_log.h"
 #include "door_sensor_driver.h"
+#include "radar_sensor_driver.h"
 
 QueueHandle_t ble_device_queue;
 ble_scan_result_t ble_tracker_data;
@@ -90,6 +91,8 @@ void app_main(void)
     ble_device_queue = xQueueCreate(10, sizeof(ble_scan_result_t));
 
     door_sensor_init();
+
+    radar_sensor_init();
 
     mqtt_custom_init();
 

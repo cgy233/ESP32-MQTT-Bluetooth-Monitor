@@ -3,7 +3,7 @@ set(srcs "esp_hid_host_main.c"
         )
 set(include_dirs ".")
 
-idf_component_register(SRCS "door_sensor_driver.c" "tp_read_main.c" "esp_mqtt_custom.c" "app_main.c" "${srcs}"
+idf_component_register(SRCS "radar_sensor_driver.c" "door_sensor_driver.c" "tp_read_main.c" "esp_mqtt_custom.c" "app_main.c" "${srcs}"
                        INCLUDE_DIRS "${include_dirs}"
                        REQUIRES esp_hid
                        REQUIRES driver

@@ -15,6 +15,7 @@ menu "HID Example Configuration"
         help
             This enables Nimble HID Host
 endmenu
+
 menu "Example Configuration"
 
     config BROKER_URL
@@ -26,5 +27,21 @@ menu "Example Configuration"
     config BROKER_URL_FROM_STDIN
         bool
         default y if BROKER_URL = "FROM_STDIN"
+
+endmenu
+
+menu "MQTT Configuration"
+
+    config MQTT_DEVICE_TOPIC
+        string "ESP设备主题"
+        default "esp32/monitor"
+        help
+            ESP设备主题
+
+    config MQTT_DOOR_SENSOR_TOPIC
+        string "门磁上报主题"
+        default "esp32/ethanhome/backdoor/state"
+        help
+            门磁状态上报的主题
 
 endmenu
