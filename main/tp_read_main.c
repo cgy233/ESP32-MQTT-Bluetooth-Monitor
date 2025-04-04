@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
+#if 0
 #include <stdio.h>
 #include <inttypes.h>
 #include "freertos/FreeRTOS.h"
@@ -129,3 +130,5 @@ void tp_read_start(void)
     // Start task to read values sensed by pads
     xTaskCreate(&tp_read_task, "touch_pad_read_task", 4096, NULL, 5, NULL);
 }
+
+#endif

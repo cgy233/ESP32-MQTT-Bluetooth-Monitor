@@ -30,7 +30,7 @@
  *
  */
 
-#define LED_GPIO_PIN_NUM    GPIO_NUM_2
+#define LED_GPIO_PIN_NUM    GPIO_NUM_4
 #define GPIO_OUTPUT_IO_1    GPIO_NUM_5
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<LED_GPIO_PIN_NUM) | (1ULL<<GPIO_OUTPUT_IO_1))
 /*
@@ -40,8 +40,8 @@
  * 1ULL<<GPIO_OUTPUT_IO_1 is equal to 0000000000000000000010000000000000000000
  * GPIO_OUTPUT_PIN_SEL                0000000000000000000011000000000000000000
  * */
-#define GPIO_INPUT_IO_0     GPIO_NUM_18
-#define GPIO_INPUT_IO_1     GPIO_NUM_19
+#define GPIO_INPUT_IO_0     GPIO_NUM_19
+#define GPIO_INPUT_IO_1     GPIO_NUM_18
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<GPIO_INPUT_IO_0) | (1ULL<<GPIO_INPUT_IO_1))
 /*
  * Let's say, GPIO_INPUT_IO_0=4, GPIO_INPUT_IO_1=5
@@ -62,7 +62,7 @@ static void IRAM_ATTR gpio_isr_handler(void* arg)
 
 static void gpio_task_example(void* arg)
 {
-    static uint8_t level = 1;
+    static uint8_t level = 0xFF;
     uint32_t io_num;
     for (;;) {
         if (xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY)) {

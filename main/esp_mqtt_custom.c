@@ -32,7 +32,7 @@
 #include "door_sensor_driver.h"
 
 #define DEV_PUBLISH_TOPIC "esp32/monitor"
-#define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/frontdoor/state"
+#define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/backdoor/state"
 
 static const char *TAG = "MQTT_CUSTOM";
 
