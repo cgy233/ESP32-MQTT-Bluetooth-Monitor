@@ -33,7 +33,7 @@
 
 #define DEV_PUBLISH_TOPIC "esp32/monitor"
 #define DEV_DOOR_STATUS_TOPIC "esp32/ethanhome/frontdoor/state"
-#define DEV_RADAR_STATUS_TOPIC "esp32/ethanhome/radar_bedroom/state"
+#define DEV_RADAR_STATUS_TOPIC "esp32/ethanhome/radar_bathroom/state"
 
 static const char *TAG = "MQTT_CUSTOM";
 

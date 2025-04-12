@@ -90,7 +90,7 @@ void app_main(void)
 
     ble_device_queue = xQueueCreate(10, sizeof(ble_scan_result_t));
 
-    door_sensor_init();
+    // door_sensor_init();
 
     radar_sensor_init();
 
